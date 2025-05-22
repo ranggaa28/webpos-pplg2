@@ -43,7 +43,7 @@ function insert($data)
     if ($gambar != null) {
         $gambar = uploadimg(null, $id);
     } else {
-        $gambar = 'images (5).jpg';
+        $gambar = 'default-brg.png';
     }
 
     //gambar tidak sesuai validasi
@@ -56,14 +56,14 @@ function insert($data)
     return mysqli_affected_rows($koneksi);
 }
 
-function delete($id, $foto)
+function delete($id, $gbr)
 {
     global $koneksi;
 
-    $sqlData = "DELETE FROM tbl_user WHERE userid = $id";
-    mysqli_query($koneksi, $sqlData);
-    if ($foto != 'default.png') {
-        unlink('../assets/image/' . $foto);
+    $sqlDel = "DELETE FROM tbl_barang WHERE id_barang = '$id'";
+    mysqli_query($koneksi, $sqlDel);
+    if ($gbr != 'default-brg.png') {
+        unlink('../assets/image/' . $gbr);
     }
     return mysqli_affected_rows($koneksi);
 }
